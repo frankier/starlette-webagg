@@ -2,10 +2,14 @@
 
 Currently you can install this package from Github:
 
-    $ uv add TODO
+    $ uv add git+https://github.com/frankier/mplbed
 
-## Run the demos
+## Run the examples
+
+The documentation is currently limited to example code.
+
+You can run the examples with the following commands:
 
     $ uv sync -U --all-groups --all-extras
-    $ uv run uvicorn --port 8001 --workers 1 demo1:app
-    $ uv run uvicorn --port 8001 --workers 1 demo2:app
+    $ cd examples/starlette && uv run uvicorn --port 8001 --workers 1 one_fig:app
+    $ cd examples/starlette && uv run uvicorn --port 8001 --workers 1 demo_popup:app

@@ -4,8 +4,8 @@ from starlette.applications import Starlette
 from starlette.responses import Response
 from starlette.routing import Route, Mount
 
-from starlette_webagg import get_head_content, get_app as get_webagg_app, figure_html
-from starlette_webagg.utils import composed_lifespan
+from mplbed import get_head_content, get_app as get_webagg_app, figure_html
+from mplbed.utils import composed_lifespan
 
 
 def homepage_template(*, head, fig1):

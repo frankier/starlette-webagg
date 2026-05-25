@@ -6,9 +6,9 @@ from starlette.middleware import Middleware
 from starlette.responses import Response
 from starlette.routing import Route, Mount
 
-from starlette_webagg import get_head_content, get_app as get_webagg_app, figure_html, use_backend
-from starlette_webagg.middleware import lifespan as webagg_lifespan
-from starlette_webagg.utils import composed_lifespan
+from mplbed import get_head_content, get_app as get_webagg_app, figure_html, use_backend
+from mplbed.middleware import lifespan as webagg_lifespan
+from mplbed.utils import composed_lifespan
 
 
 def homepage_template(*, head, fig):

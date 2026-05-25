@@ -7,11 +7,11 @@ from starlette.routing import Route, Mount, WebSocketRoute
 from starlette.staticfiles import StaticFiles
 from starlette.websockets import WebSocketState
 
-from starlette_webagg.utils import SyncWebSocket
+from mplbed.utils import SyncWebSocket
 
 import matplotlib as mpl
-from starlette_webagg.middleware import lifespan as webagg_lifespan, get_current_app
-from starlette_webagg.withshow import (
+from mplbed.middleware import lifespan as webagg_lifespan, get_current_app
+from mplbed.withshow import (
     FigureManagerWebAggWithShow,
     FigureCollector,
     new_figure_manager_given_figure,
@@ -19,7 +19,7 @@ from starlette_webagg.withshow import (
 
 
 def use_backend():
-    mpl.use("module://starlette_webagg.withshow")
+    mpl.use("module://mplbed.withshow")
 
 
 managers = {}
@@ -27,7 +27,7 @@ managers = {}
 
 def get_head_content(core=False, app=None):
     if app is None:
-        from starlette_webagg.middleware import get_current_app
+        from mplbed.middleware import get_current_app
         app = get_current_app()
     css_files = []
     if not core:
@@ -80,7 +80,7 @@ def add_manager(manager):
 def figure_html_from_id(fig_id, target="inline", app=None, on_close="msg_discrete"):
     from json import dumps
     if app is None:
-        from starlette_webagg.middleware import get_current_app
+        from mplbed.middleware import get_current_app
         app = get_current_app()
     ws_uri = app.url_path_for("webagg:websocket", fig_id=fig_id)
     ws_uri_str = dumps(ws_uri)
@@ -137,7 +137,7 @@ def figure_html_from_id(fig_id, target="inline", app=None, on_close="msg_discret
 
 def figure_html(figure, target="inline", app=None, on_close="msg_discrete"):
     if app is None:
-        from starlette_webagg.middleware import get_current_app
+        from mplbed.middleware import get_current_app
         app = get_current_app()
     manager = new_figure_manager_given_figure(id(figure), figure)
     add_manager(manager)
@@ -153,9 +153,9 @@ def get_mpl_js(request):
 
 def get_webaggext_js(request):
     from importlib import resources as impresources
-    import starlette_webagg
+    import mplbed
 
-    js_file = impresources.files(starlette_webagg) / 'webaggext.js'
+    js_file = impresources.files(mplbed) / 'webaggext.js'
     with js_file.open() as f:
         contents = f.read()
     return Response(contents, media_type="application/javascript")
@@ -176,8 +176,8 @@ async def download_fig(request):
 
 
 async def handle_websocket(websocket):
-    from starlette_webagg.middleware import get_current_app
-    from starlette_webagg.withshow import consume_figs
+    from mplbed.middleware import get_current_app
+    from mplbed.withshow import consume_figs
     app = get_current_app()
     fig_id = websocket.path_params["fig_id"]
     supports_binary = True

@@ -59,8 +59,8 @@ class FigureManagerWebAggWithShow(FigureManagerWebAgg):
     _toolbar2_class = NavigationToolbar2WebAgg
 
     def show(self):
-        from starlette_webagg.middleware import get_current_app
-        from starlette_webagg.starlette_app import add_manager, figure_html_from_id
+        from mplbed.middleware import get_current_app
+        from mplbed.starlette_app import add_manager, figure_html_from_id
         show_context = require_show_context("FigureManagerWebAggWithShow.show")
         app = get_current_app()
         add_manager(self)

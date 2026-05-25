@@ -1,5 +1,5 @@
 [project]
-name = "starlette_webagg"
+name = "mplbed"
 version = "0.1.0"
 description = "Integrate Matplotlib's WebAgg backend with Starlette for real-time plotting in web applications."
 readme = "README.md"

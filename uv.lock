@@ -344,6 +344,33 @@ wheels = [
 ]
 
 [[package]]
+name = "mplbed"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "matplotlib" },
+    { name = "starlette" },
+    { name = "tornado" },
+    { name = "uvicorn", extra = ["standard"] },
+]
+
+[package.dev-dependencies]
+demo = [
+    { name = "mne" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "matplotlib", specifier = ">=3.10.9" },
+    { name = "starlette", specifier = ">=1.0.0" },
+    { name = "tornado", specifier = ">=6.5.5" },
+    { name = "uvicorn", extras = ["standard"], specifier = ">=0.46.0" },
+]
+
+[package.metadata.requires-dev]
+demo = [{ name = "mne", specifier = ">=1.12.1" }]
+
+[[package]]
 name = "numpy"
 version = "2.4.4"
 source = { registry = "https://pypi.org/simple" }
@@ -559,33 +586,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/81/69/17425771797c36cde
 wheels = [
     { url = "https://files.pythonhosted.org/packages/0b/c9/584bc9651441b4ba60cc4d557d8a547b5aff901af35bda3a4ee30c819b82/starlette-1.0.0-py3-none-any.whl", hash = "sha256:d3ec55e0bb321692d275455ddfd3df75fff145d009685eb40dc91fc66b03d38b", size = 72651, upload-time = "2026-03-22T18:29:45.111Z" },
 ]
-
-[[package]]
-name = "starlette-webagg"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "matplotlib" },
-    { name = "starlette" },
-    { name = "tornado" },
-    { name = "uvicorn", extra = ["standard"] },
-]
-
-[package.dev-dependencies]
-demo = [
-    { name = "mne" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "matplotlib", specifier = ">=3.10.9" },
-    { name = "starlette", specifier = ">=1.0.0" },
-    { name = "tornado", specifier = ">=6.5.5" },
-    { name = "uvicorn", extras = ["standard"], specifier = ">=0.46.0" },
-]
-
-[package.metadata.requires-dev]
-demo = [{ name = "mne", specifier = ">=1.12.1" }]
 
 [[package]]
 name = "tornado"

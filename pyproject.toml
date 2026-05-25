@@ -11,9 +11,9 @@ dependencies = [
     "uvicorn[standard]>=0.46.0",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 demo = [
-    "uvicorn>=0.46.0",
+  "mne>=1.12.1",
 ]
 
 [build-system]

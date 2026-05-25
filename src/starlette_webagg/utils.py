@@ -10,8 +10,8 @@ def composed_lifespan(*lifespans):
     @asynccontextmanager
     async def lifespan(app):
         async with AsyncExitStack() as stack:
-            for lifespan in lifespans:
-                await stack.enter_async_context(app.router.lifespan_context(app))
+            for inner_lifespan in lifespans:
+                await stack.enter_async_context(inner_lifespan(app))
             for route in app.routes:
                 if isinstance(route, Mount) and isinstance(route.app, Starlette):
                     await stack.enter_async_context(
